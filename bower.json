@@ -1,6 +1,11 @@
 {
   "name": "whose-turn",
   "version": "0.2",
+  "dependencies": {
+    "angular": "~1.2.21",
+    "angular-route": "~1.2.22",
+    "angular-resource": "~1.2.22"
+  },
   "authors": [
     "Geoffrey Wiseman <geoffrey.wiseman@codiform.com>",
     "Paul Huang <paul.hfch@gmail.com>"
