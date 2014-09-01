@@ -134,9 +134,7 @@ module.exports = function( grunt ) {
 					'clean',
 					'build',
 					'express:prod',
-					'open:localhost',
 					'express-keepalive'
-					// keepalive
 					);
 			} else {
 				// by default, start up in 'dev' mode
