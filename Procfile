@@ -1,1 +1,1 @@
-web: ./node_modules/grunt-cli/bin/grunt serve:production
+web: ./node_modules/grunt-cli/bin/grunt serve:prod
