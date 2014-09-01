@@ -23,5 +23,9 @@
     "logfmt": "^1.1.2",
     "time-grunt": "^0.3.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  }
 }
