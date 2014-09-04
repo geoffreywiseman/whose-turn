@@ -4,7 +4,8 @@
   "dependencies": {
     "angular": "~1.2.21",
     "angular-route": "~1.2.22",
-    "angular-resource": "~1.2.22"
+    "angular-resource": "~1.2.22",
+    "purecss": "~0.5.0"
   },
   "authors": [
     "Geoffrey Wiseman <geoffrey.wiseman@codiform.com>",

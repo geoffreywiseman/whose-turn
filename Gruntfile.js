@@ -108,6 +108,15 @@ module.exports = function( grunt ) {
 				options: {
 					spawn: false
 				}
+			},
+			bower: {
+				files: [ 'client/bower_components/**/*' ],
+				tasks: [ 'wiredep' ]
+			}
+		},
+		wiredep: {
+			target: {
+				src: 'client/index.html'
 			}
 		}
 	});
@@ -115,6 +124,7 @@ module.exports = function( grunt ) {
 	// Global Loading
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-newer' );
+	grunt.loadNpmTasks( 'grunt-wiredep' );
 
 	// Custom Tasks
 	  grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
@@ -161,6 +171,7 @@ module.exports = function( grunt ) {
 
 			// Run Tasks
 			grunt.task.run(
+				'wiredep',
 				'useminPrepare', 
 				'newer:jshint',
 				'newer:imagemin',
