@@ -33,19 +33,8 @@
 			return {
 				restrict: 'E',
 				templateUrl: 'views/site-header.html',
-				link: function( scope, element, attrs ) {
-					if( attrs.title ) {
-						// title, so left-aligned, smaller logo
-						console.log( 'Using left-aligned smaller logo in header.' );
-						element.find( 'div div' ).addClass('col-md-4').after( '<div class="col-md-4 centered"><h1>' + attrs.title + '</h1></div>' );
-						element.find( 'img' ).addClass( 'smallLogo' );
-
-						var logo = element.find('img')[0];
-						logo.className='smallLogo';
-					} else {
-						console.log( 'Using centered larger logo in header.' );
-						element.find( 'div div' ).addClass( 'col-md-4' ).addClass( 'col-md-offset-4' ).addClass( 'centered' );
-					}
+				scope: {
+					title: '@'
 				}
 			};
 		} );
