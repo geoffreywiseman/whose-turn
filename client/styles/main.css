@@ -24,7 +24,10 @@ List View
 .listItem {
   text-align: center;
   display: block;
-  padding: 20px 0px;
+  padding: 20px 5%;
+  margin: 0px;
+  width: 90%;
+  overflow: auto;
 }
 
 .listItem {
@@ -34,6 +37,22 @@ List View
 
 .listItem:nth-child(n+2) {
   border-top: 1px dotted gray;
+}
+
+.listItem > .memberName {
+  float: left;
+}
+
+.listItem > .memberScore {
+  float: right;
+}
+
+.memberScore.negativeScore {
+  color: #c00;
+}
+
+.memberScore.positiveScore {
+  color: #090;
 }
 
 /* Custom page footer */

@@ -1,8 +1,12 @@
 <site-header title="{{ memberList.name }}"></site-header>
 <div class="pure-g">
-	<div class="pure-u-1-5">&nbsp;</div>
-	<ul class="pure-u-3-5 listContainer">
-		<li class="listItem" ng-repeat="member in memberList.members | orderBy:'score':reverse" ng-show="listRetrieved">{{ member.name }}</li>
+	<div class="pure-u-sm-1-8 pure-u-md-1-6 pure-u-lg-1-4 pure-u-xl-1-3">&nbsp;</div>
+	<ul class="pure-u-1 pure-u-sm-3-4 pure-u-md-2-3 pure-u-lg-1-2 pure-u-xl-1-3 listContainer">
+		<li class="listItem" ng-repeat="member in memberList.members | orderBy:'score':reverse" ng-show="listRetrieved">
+			<span class="memberName">{{ member.name }}</span>
+			<span class="memberScore positiveScore" ng-show="member.score >= 0">{{ member.score }}</span>
+			<span class="memberScore negativeScore" ng-show="member.score < 0">({{ -member.score }})</span>
+		</li>
 		<li class="listItem" ng-show="{{ listRetrieved === undefined }}">... loading ...</li>
 		<li class="listItem" ng-hide="listRetrieved">List not found.</li>
 	</ul>
