@@ -2,3 +2,5 @@
 node_modules/
 dist/
 client/bower_components/
+mongodb/
+.envrc
