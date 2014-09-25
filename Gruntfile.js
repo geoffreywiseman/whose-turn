@@ -75,6 +75,12 @@ module.exports = function( grunt ) {
 				src: 'server/**/*.js'
 			}
 		},
+		karma: {
+			unit: {
+				configFile: 'test/karma.conf.js',
+				singleRun: true
+			}
+		},
 		open: {
 			localhost: {
 				path: 'http://localhost:3000'
@@ -187,5 +193,9 @@ module.exports = function( grunt ) {
 			grunt.loadNpmTasks( 'grunt-contrib-clean' );
 			grunt.task.run( 'clean', 'build' );
 		} );
+	grunt.registerTask( 'test', "Run Karma tests", function (target) {
+		grunt.loadNpmTasks( 'grunt-karma' );
+		grunt.task.run( 'karma:unit' );
+	} );
 
 };
