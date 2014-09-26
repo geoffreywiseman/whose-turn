@@ -26,11 +26,20 @@ module.exports = function(config) {
         'client/scripts/**/*.js',
 
         // specs
-        'test/*.spec.js'
+        'test/*.spec.js',
+
+        // views (for preprocessor)
+        'client/**/*.html'
     ],
 
-    // list of files / patterns to exclude
-    exclude: [],
+    preprocessors: {
+        'client/**/*.html': [ 'ng-html2js' ]
+    },
+
+    ngHtml2JsPreprocessor: {
+          stripPrefix: 'client/',
+          moduleName: 'whoseTurnViews'
+    },
 
     // reporters: progress, spec
     reporters: [ 'spec' ], 
@@ -50,13 +59,14 @@ module.exports = function(config) {
       'PhantomJS'
     ],
 
-    // Which plugins to enable
-    plugins: [
-      'karma-chai',
-      'karma-mocha',
-      'karma-phantomjs-launcher',
-      'karma-spec-reporter'
-    ],
+    // Which plugins to enable? 
+    // By default, it'll load all karma-*
+    // plugins: [
+    //   'karma-chai',
+    //   'karma-mocha',
+    //   'karma-phantomjs-launcher',
+    //   'karma-spec-reporter'
+    // ],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

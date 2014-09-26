@@ -7,8 +7,8 @@
 			<span class="memberScore positiveScore" ng-show="member.score >= 0">{{ member.score }}</span>
 			<span class="memberScore negativeScore" ng-show="member.score < 0">({{ -member.score }})</span>
 		</li>
-		<li class="listItem" ng-show="{{ listRetrieved === undefined }}">... loading ...</li>
-		<li class="listItem" ng-hide="listRetrieved">List not found.</li>
+		<li class="listItem" ng-show="{{ listRetrieved == null }}">... loading ...</li>
+		<li class="listItem" ng-show="{{ listRetrieved == false }}">List not found.</li>
 	</ul>
 </div>
 <site-footer></site-footer>
