@@ -11,7 +11,23 @@ describe( "Testing Routes", function() {
 		} );
 	} );
 
-	describe( "/lists/:listId route", function() {
+	describe( "'/' route", function() {
+		var route;
+		beforeEach( function() {
+			route = router.routes[ "/" ];
+		} );
+		it( "should be defined", function() {
+			expect( route ).to.exist;
+		} );
+		it( "should have lists template", function() {
+			expect( route.templateUrl ).to.equal( "views/lists.html" );
+		} );
+		it( "should use ListsCtrl controller", function() {
+			expect( route.controller ).to.equal( "ListsCtrl" );
+		} );
+	} );
+
+	describe( "'/lists/:listId' route", function() {
 		var listRoute;
 		beforeEach( function() {
 			listRoute = router.routes[ "/lists/:listId" ];
@@ -24,6 +40,19 @@ describe( "Testing Routes", function() {
 		} );
 		it( "should have the ListCtrl controller", function() {
 			expect( listRoute.controller ).to.equal( "ListCtrl" );
+		} );
+	} );
+
+	describe( "'/about' route", function() {
+		var route;
+		beforeEach( function() {
+			route = router.routes[ "/about" ];
+		} );
+		it( "should be defined", function() {
+			expect( route ).to.exist;
+		} );
+		it( "should have about template", function() {
+			expect( route.templateUrl ).to.equal( "views/about.html" );
 		} );
 	} );
 
