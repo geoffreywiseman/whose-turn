@@ -1,0 +1,8 @@
+{
+	"globals": {
+		"describe": false,
+		"beforeEach": false,
+		"it":false
+	},
+	"expr": true
+}

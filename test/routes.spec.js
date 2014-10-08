@@ -1,6 +1,6 @@
-'use strict';
-
+/* jshint expr:true */
 describe( "Testing Routes", function() {
+	'use strict';
 
 	var router;
 

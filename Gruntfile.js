@@ -73,6 +73,9 @@ module.exports = function( grunt ) {
 					node: true
 				},
 				src: 'server/**/*.js'
+			},
+			test: {
+				src: 'test/**/*.js'
 			}
 		},
 		karma: {
@@ -195,7 +198,7 @@ module.exports = function( grunt ) {
 		} );
 	grunt.registerTask( 'test', "Run Karma tests", function (target) {
 		grunt.loadNpmTasks( 'grunt-karma' );
-		grunt.task.run( 'karma:unit' );
+		grunt.task.run( 'jshint:test', 'karma:unit' );
 	} );
 
 };

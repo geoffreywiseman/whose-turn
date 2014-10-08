@@ -1,6 +1,5 @@
-'use strict';
-
 describe( "Testing Modules", function() {
+	'use strict';
 
 	describe( "WhoseTurn Module", function() {
 
