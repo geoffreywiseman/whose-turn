@@ -64,15 +64,15 @@ describe( "List View", function() {
 				name: "Test List",
 				members: [
 					{
-						memberName: "One",
+						name: "One",
 						score: 1
 					},
 					{
-						memberName: "Two",
+						name: "Two",
 						score: 2
 					},
 					{ 
-						memberName: "Three",
+						name: "Three",
 						score: 3
 					}
 				]
@@ -80,8 +80,20 @@ describe( "List View", function() {
 			initView();
 		} );
 
-		it( "should have five list items", function() {
+		it( "should display the list name", function() {
+			var header = getFirstElementWithTagName( view, "site-header" );
+			expect( header ).to.exist;
+			expect( header.getAttribute( "title") ).to.equal( "Test List" );
+		} );
+
+		it( "should have five items (three visible, two hidden)", function() {
 			expectListSize( 5 );
+		} );
+
+		it( "should show three visible items", function() {
+			expectListEntry( 0, "One" );
+			expectListEntry( 1, "Two" );
+			expectListEntry( 2, "Three" );
 		} );
 
 		it( "should not show the loading or not found indicators", function() {
@@ -98,7 +110,34 @@ describe( "List View", function() {
 
 	function expectListEntryHidden( index, hidden ) {
 		var lis = view.find( "li" );
-		expect( lis[ index ].classList.contains( 'ng-hide' ) ).to.equal( hidden );
+		expect( lis.length ).to.be.above( index );
+		expectHidden( lis[ index ], hidden );
+	}
+
+	function expectHidden( element, hidden ) {
+		expect( element.classList.contains( 'ng-hide' ) ).to.equal( hidden );
+	}
+
+	function expectListEntry( index, contents ) {
+		var lis = view.find( "li" );
+		expect( lis.length ).to.be.above( index );
+		expectHidden( lis[ index ], false );
+		
+		var elements = lis[index].getElementsByClassName( "memberName" );
+		expect( elements.length ).to.equal( 1 );
+		expect( elements[0].textContent ).to.equal( contents );
+	}
+
+	function getFirstElementWithTagName( view, tagName ) {
+		for( var index = 0; index<view.length; index++ ) {
+			var item = view[index];
+			if( item instanceof HTMLElement ) {
+				if( item.tagName.toUpperCase() == tagName.toUpperCase() ) {
+					return item;
+				}
+			}
+		}
+		return null;
 	}
 
 } );
