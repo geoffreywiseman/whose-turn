@@ -25,6 +25,9 @@ module.exports = function(config) {
         // app
         'client/scripts/**/*.js',
 
+        // spec helper
+        'test/helper.js',
+
         // specs
         'test/*.spec.js',
 
