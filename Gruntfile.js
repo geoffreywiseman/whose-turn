@@ -75,13 +75,21 @@ module.exports = function( grunt ) {
 				src: 'server/**/*.js'
 			},
 			test: {
-				src: 'test/**/*.js'
+				src: [
+					'client/**/*.js',
+					'test/**/*.js',
+					'!client/bower_components/**/*.js'
+				]
 			}
 		},
 		karma: {
 			unit: {
 				configFile: 'test/karma.conf.js',
 				singleRun: true
+			},
+			unitauto: {
+				configFile: 'test/karma.conf.js',
+				autoWatch: true
 			}
 		},
 		open: {
@@ -148,7 +156,7 @@ module.exports = function( grunt ) {
 			grunt.loadNpmTasks( 'grunt-express-server' );
 			grunt.loadNpmTasks( 'grunt-open' );
 
-			if( target == 'prod' ) {
+			if( target === 'prod' ) {
 				grunt.task.run(
 					'clean',
 					'build',
@@ -169,7 +177,7 @@ module.exports = function( grunt ) {
 		} );
 	grunt.registerTask( 'build', 
 		'Create a dist/ folder and deliver a minified/uglified version of the site to it.',
-		function (target) {
+		function () {
 			// Loading Tasks from NPM Modules for "build" task
 			grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 			grunt.loadNpmTasks( 'grunt-usemin' );
@@ -191,14 +199,22 @@ module.exports = function( grunt ) {
 				'usemin'
 			);
 		} );
-	grunt.registerTask( 'default', "Clean and then build.",
-		function (target) {
+	grunt.registerTask( 'test', 'Run Karma tests (with optional :watch to stay alive and re-run)', function (target) {
+		grunt.loadNpmTasks( 'grunt-karma' );
+
+		if( target === 'watch' ) {
+			grunt.loadNpmTasks( 'grunt-contrib-watch' );
+			grunt.task.run( 'karma:watch', 'watch:test' );
+		} else if( target === 'auto' ) {
+			grunt.task.run( 'jshint:test', 'karma:unitauto' );
+		} else {
+			grunt.task.run( 'jshint:test', 'karma:unit' );
+		}
+	} );
+	grunt.registerTask( 'default', 'Clean and then build.',
+		function () {
 			grunt.loadNpmTasks( 'grunt-contrib-clean' );
 			grunt.task.run( 'clean', 'build' );
 		} );
-	grunt.registerTask( 'test', "Run Karma tests", function (target) {
-		grunt.loadNpmTasks( 'grunt-karma' );
-		grunt.task.run( 'jshint:test', 'karma:unit' );
-	} );
 
 };
