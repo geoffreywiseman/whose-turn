@@ -18,7 +18,7 @@ describe( "List View", function() {
 		$scope.$digest();
 	}
 
-	it( "should be compiled", function() {
+	it( "should compile", function() {
 		initView();
 		expect( view ).to.exist;
 	} );
@@ -28,13 +28,13 @@ describe( "List View", function() {
 			initView();
 		} );
 		it( "should have two list items", function() {
-			expectListSize( 2 );
+			expectListSize( view, 2 );
 		} );
 		it( "should show loading indicator", function() {
-			expectListEntryHidden( 0, false );
+			expect( view.find( "li" )[0] ).to.not.be.nghidden;
 		} );
 		it( "should hide not found", function() {
-			expectListEntryHidden( 1, true );
+			expect( view.find( "li" )[1] ).to.be.nghidden;
 		} );
 	} );
 
@@ -45,15 +45,15 @@ describe( "List View", function() {
 		} );
 
 		it( "should only have two list items", function() {
-			expectListSize( 2 );
+			expectListSize( view, 2 );
 		} );
 
 		it( "should hide loading indicator", function() {
-			expectListEntryHidden( 0, true );
+			expect( view.find( "li" )[ 0 ] ).to.be.nghidden;
 		} );
 
 		it( "should show 'not found'", function() {
-			expectListEntryHidden( 1, false );
+			expect( view.find( "li" )[ 1 ] ).to.not.be.nghidden;
 		} );
 	} );
 
@@ -87,7 +87,7 @@ describe( "List View", function() {
 		} );
 
 		it( "should have five items (three visible, two hidden)", function() {
-			expectListSize( 5 );
+			expectListSize( view, 5 );
 		} );
 
 		it( "should show three visible items", function() {
@@ -97,31 +97,18 @@ describe( "List View", function() {
 		} );
 
 		it( "should not show the loading or not found indicators", function() {
-			expectListEntryHidden( 3, true );
-			expectListEntryHidden( 4, true );
+			var lis = view.find( "li" );
+			expect( lis.length ).to.be.above( 4 );
+			expect( lis[ 3 ] ).to.be.nghidden;
+			expect( lis[ 4 ] ).to.be.nghidden;
 		} );
 
 	} );
 
-	function expectListSize( size ) {
-		var lis = view.find( "li" );
-		expect( lis.length ).to.equal( size );
-	}
-
-	function expectListEntryHidden( index, hidden ) {
-		var lis = view.find( "li" );
-		expect( lis.length ).to.be.above( index );
-		expectHidden( lis[ index ], hidden );
-	}
-
-	function expectHidden( element, hidden ) {
-		expect( element.classList.contains( 'ng-hide' ) ).to.equal( hidden );
-	}
-
 	function expectListEntry( index, contents ) {
 		var lis = view.find( "li" );
 		expect( lis.length ).to.be.above( index );
-		expectHidden( lis[ index ], false );
+		expect( lis[ index ] ).to.not.be.nghidden;
 		
 		var elements = lis[index].getElementsByClassName( "memberName" );
 		expect( elements.length ).to.equal( 1 );
