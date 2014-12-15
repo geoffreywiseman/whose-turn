@@ -199,7 +199,7 @@ module.exports = function( grunt ) {
 				'usemin'
 			);
 		} );
-	grunt.registerTask( 'test', 'Run Karma tests (with optional :watch to stay alive and re-run)', function (target) {
+	grunt.registerTask( 'test', 'Run Karma tests (with optional :auto to stay alive and re-run)', function (target) {
 		grunt.loadNpmTasks( 'grunt-karma' );
 
 		if( target === 'watch' ) {
