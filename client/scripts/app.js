@@ -7,16 +7,16 @@
 	whoseTurn.controller( 'ListCtrl', ['$scope', '$resource', '$routeParams', function($scope, $resource, $routeParams) {
 		var List = $resource( '/api/lists/:listId' );
 		$scope.listRetrieved = null;
-		console.log( "Requesting list: " + $routeParams.listId );
+		console.log( 'Requesting list: ' + $routeParams.listId );
 		$scope.memberList = List.get( { listId: $routeParams.listId }, function( ) {
-			console.log( "List retrieved: " + $scope.memberList.name );
+			console.log( 'List retrieved: ' + $scope.memberList.name );
 			$scope.listRetrieved = true;
 		}, function( ) {
 			$scope.listRetrieved = false;
 		} );
 	} ] );
 
-	whoseTurn.controller( 'ListsCtrl', ['$scope', '$resource', function( $scope, $resource, $routeParams ) {
+	whoseTurn.controller( 'ListsCtrl', ['$scope', '$resource', function( $scope, $resource ) {
 		var List = $resource( '/api/lists/:listId' );
 		$scope.lists = List.query( );
 	} ] );
