@@ -4,6 +4,8 @@
 	var whoseTurn = angular.module('whoseTurnApp', [ 'ngRoute', 'ngResource' ]);
 
 	// Controllers
+
+	// ListCtrl (Controller for List)
 	whoseTurn.controller( 'ListCtrl', ['$scope', '$resource', '$routeParams', function($scope, $resource, $routeParams) {
 		var List = $resource( '/api/lists/:listId' );
 		$scope.listRetrieved = null;
@@ -16,6 +18,7 @@
 		} );
 	} ] );
 
+	// ListsCtrl (Controller for List of Lists)
 	whoseTurn.controller( 'ListsCtrl', ['$scope', '$resource', function( $scope, $resource ) {
 		var List = $resource( '/api/lists/:listId' );
 		$scope.lists = List.query( );
